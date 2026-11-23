@@ -46,9 +46,19 @@ export default function App() {
 
   return (
     <div className="flex min-h-screen flex-col">
+      <a
+        href="#catalogo"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-lg focus:bg-slate-900 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+      >
+        Saltar al catálogo
+      </a>
+
       <Header favoritesCount={count} />
 
-      <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-8 sm:px-6 lg:px-8">
+      <main
+        id="catalogo"
+        className="mx-auto w-full max-w-7xl flex-1 scroll-mt-24 px-4 py-8 sm:px-6 lg:px-8"
+      >
         <section aria-labelledby="catalog-heading" className="flex flex-col gap-6">
           <div className="flex flex-col gap-1">
             <h2
@@ -150,6 +160,23 @@ export default function App() {
           )}
         </section>
       </main>
+
+      <footer className="border-t border-slate-200 bg-white">
+        <div className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+          <p>Mini Catálogo · Prueba técnica Frontend (React + Tailwind CSS)</p>
+          <p>
+            Datos de{' '}
+            <a
+              href="https://dummyjson.com"
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium text-indigo-600 underline-offset-2 transition hover:text-indigo-800 hover:underline"
+            >
+              dummyjson.com
+            </a>
+          </p>
+        </div>
+      </footer>
     </div>
   )
 }
