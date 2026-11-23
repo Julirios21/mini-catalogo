@@ -4,10 +4,12 @@ import ProductGrid from './components/ProductGrid'
 import ProductSkeleton from './components/ProductSkeleton'
 import SearchBar from './components/SearchBar'
 import StatusMessage from './components/StatusMessage'
+import { useFavorites } from './hooks/useFavorites'
 import { useProducts } from './hooks/useProducts'
 
 export default function App() {
   const { products, loading, error, retry } = useProducts()
+  const { count, isFavorite, toggleFavorite } = useFavorites()
   const [search, setSearch] = useState('')
 
   const filteredProducts = useMemo(() => {
@@ -21,7 +23,7 @@ export default function App() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <Header favoritesCount={0} />
+      <Header favoritesCount={count} />
 
       <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-8 sm:px-6 lg:px-8">
         <section aria-labelledby="catalog-heading" className="flex flex-col gap-6">
@@ -88,7 +90,11 @@ export default function App() {
           )}
 
           {!loading && !error && filteredProducts.length > 0 && (
-            <ProductGrid products={filteredProducts} />
+            <ProductGrid
+              products={filteredProducts}
+              isFavorite={isFavorite}
+              onToggleFavorite={toggleFavorite}
+            />
           )}
         </section>
       </main>
